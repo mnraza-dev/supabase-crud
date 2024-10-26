@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { supabase } from "../config/supabaseClient"; // Ensure this import is correct
-import { Link } from "react-router-dom";
+import { supabase } from "../config/supabaseClient"; 
 import SmoothieCard from "../components/SmoothieCard";
 
 const Home = () => {
@@ -36,7 +35,7 @@ const Home = () => {
   if (loading) return <p>Loading...</p>; // Display loading state
 
   return (
-    <div className=" p-6 flex flex-wrap gap-6">
+    <div className=" p-6 flex  justify-center items-center flex-wrap gap-6">
       {fetchError && <p>{fetchError}</p>}
       {smoothies.length > 0 ? (
         smoothies.map((smoothie) => (
