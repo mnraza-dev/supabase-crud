@@ -1,11 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiEdit3 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
-const SmoothieCard = ({ smoothie }) => {
+
+import { supabase } from "../config/supabaseClient";
+
+const SmoothieCard = ({ smoothie , onDelete}) => {
+  const navigate = useNavigate();
+
+  const deleteSmoothie = async () => {
+    const { data, error } = await supabase
+      .from("smoothies")
+      .delete()
+      .eq("id", smoothie.id);
+
+    if (error) {
+      console.log("Error:", error);
+    } else {
+      onDelete(smoothie.id);
+      navigate("/", { replace: true });
+    }
+  };
   return (
-    <Link
-      to={`/${smoothie.id}`}
+    <div
       key={smoothie.id}
       className=" mb-4 mt-4 relative max-w-44 w-44 h-[200px] bg-gray-100  p-6 rounded-lg drop-shadow-lg  border-1 border-sky-200"
     >
@@ -22,15 +39,15 @@ const SmoothieCard = ({ smoothie }) => {
       </p>
       <div className="bg-white mt-2 absolute -bottom-4 right-['50%'] rounded-full p-2 gap-4  flex items-center justify-center w-32  ">
         <MdDelete
-          onClick={() => deleteSmoothie(smoothie.id)}
-          className="text-red-600 hover:text-red-800 x"
+          onClick={deleteSmoothie}
+          className=" cursor-pointer text-red-600 hover:text-red-800 x"
           size={18}
         />
         <Link className=" " to={`/${smoothie.id}`}>
           <FiEdit3 size={18} />
         </Link>
       </div>
-    </Link>
+    </div>
   );
 };
 

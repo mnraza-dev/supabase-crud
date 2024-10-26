@@ -7,6 +7,10 @@ const Home = () => {
   const [smoothies, setSmoothies] = useState([]); // Initialize with an empty array
   const [loading, setLoading] = useState(true); // Track loading state explicitly
 
+
+  const handleDelete =  (id) => {
+    setSmoothies(smoothies.filter((smoothie) => smoothie.id !== id));
+  }
   useEffect(() => {
     const fetchSmoothies = async () => {
       console.log("Fetching smoothies..."); // Debugging log
@@ -39,7 +43,7 @@ const Home = () => {
       {fetchError && <p>{fetchError}</p>}
       {smoothies.length > 0 ? (
         smoothies.map((smoothie) => (
-         <SmoothieCard key={smoothie.id} smoothie={smoothie} />
+         <SmoothieCard onDelete={handleDelete} key={smoothie.id} smoothie={smoothie} />
         ))
       ) : (
         !fetchError && <p>No smoothies available.</p>
