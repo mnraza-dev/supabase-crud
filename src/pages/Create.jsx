@@ -38,7 +38,7 @@ const Create = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center p-6 gap-6">
+    <div className="mt-32 overflow-hidden  flex flex-col justify-center items-center p-6 gap-6">
       <h2 className="text-2xl font-medium text-center">Create New Smoothies</h2>
       {formError && (
         <p className="absolute top-16 w-full bg-red-500 drop-shadow-m text-white rounded-lg p-3">
@@ -54,14 +54,14 @@ const Create = () => {
       {/* Display success message */}
       <form
         onSubmit={handleSubmit}
-        className="flex gap-3 flex-col bg-gray-200 p-6 rounded-md drop-shadow-md border border-sky-100"
+        className="flex  gap-3 flex-col bg-gray-200 p-6 rounded-md drop-shadow-md border border-sky-100 w-1/3"
       >
         <input
           type="text"
           name="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="rounded-md drop-shadow-md outline-none px-2"
+          className="rounded-md drop-shadow-md outline-none px-4 py-2 w-full"
           placeholder="Smoothie Title"
         />
 
@@ -70,14 +70,14 @@ const Create = () => {
           name="rating"
           value={rating}
           onChange={(e) => setRating(e.target.value)}
-          className="rounded-md drop-shadow-md outline-none px-2"
+          className="px-4 py-2 w-full rounded-md drop-shadow-md outline-none "
           placeholder="Rating"
         />
 
         <textarea
           value={method}
           onChange={(e) => setMethod(e.target.value)}
-          className="rounded-md drop-shadow-md outline-none px-2"
+          className="rounded-md drop-shadow-md outline-none px-4 py-2 w-full"
           placeholder="Description"
         />
 
