@@ -22,29 +22,29 @@ const Home = () => {
         const { data, error } = await supabase
           .from("smoothies")
           .select()
-          .order(orderBy, { ascending: true }); // Use orderBy state
+          .order(orderBy, { ascending: true }); 
 
-        if (error) throw error; // Catch any error
+        if (error) throw error; 
 
-        setSmoothies(data || []); // Safely set data
-        setFetchError(null); // Reset error state
-        console.log("Fetched data:", data); // Log the data
+        setSmoothies(data || []);
+        setFetchError(null); 
+        console.log("Fetched data:", data); 
       } catch (err) {
         console.error("Fetch error:", err);
         setFetchError("Could not fetch the smoothies.");
-        setSmoothies([]); // Reset data on error
+        setSmoothies([]);
       } finally {
-        setLoading(false); // Set loading to false after fetch attempt
+        setLoading(false);
       }
     };
 
     fetchSmoothies();
-  }, [orderBy]); // Re-fetch data when orderBy changes
+  }, [orderBy]); 
 
-  if (loading) return <p>Loading...</p>; // Display loading state
+  if (loading) return <p>Loading...</p>; 
 
   return (
-    <div className="p-6 flex flex-col items-center gap-6">
+    <div className="p-6 flex flex-col gap-6 justify-center items-center">
       {fetchError && <p className="text-red-500">{fetchError}</p>}
       <div className="flex gap-3">
         <p>Order By:</p>
@@ -54,7 +54,7 @@ const Home = () => {
       </div>
 
       {smoothies.length > 0 ? (
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-8 justify-center items-center">
           {smoothies.map((smoothie) => (
             <SmoothieCard
               key={smoothie.id}
@@ -64,7 +64,7 @@ const Home = () => {
           ))}
         </div>
       ) : (
-        <p>No smoothies available.</p> // Handle empty state
+        <p className="text-gray-500 text-2xl">No smoothies available.</p> 
       )}
     </div>
   );
