@@ -5,7 +5,7 @@ import { MdDelete } from "react-icons/md";
 
 import { supabase } from "../config/supabaseClient";
 
-const SmoothieCard = ({ smoothie , onDelete}) => {
+const SmoothieCard = ({ smoothie, onDelete }) => {
   const navigate = useNavigate();
 
   const deleteSmoothie = async () => {
@@ -37,14 +37,19 @@ const SmoothieCard = ({ smoothie , onDelete}) => {
       <p className=" bg-blue-950 rounded-full p-2 -right-2 absolute -top-2 text-sm">
         ⭐
       </p>
-      <div className="bg-blue-200/50 mt-2  absolute bottom-2   rounded-md p-2 gap-4  flex items-center justify-center w-[230px]  ">
-        <MdDelete
-          onClick={deleteSmoothie}
-          className=" cursor-pointer text-red-600 hover:text-red-800 x"
-          size={18}
-        />
-        <Link className=" " to={`/${smoothie.id}`}>
-          <FiEdit3 size={18} />
+      <div className="mt-2  absolute bottom-2   rounded-md p-1 gap-4  flex items-center justify-end w-[230px]  ">
+        <div className="bg-gray-300/50 p-2 rounded-full drop-shadow-lg">
+          <MdDelete
+            onClick={deleteSmoothie}
+            className="cursor-pointer text-red-600 hover:text-red-800 x"
+            size={25}
+          />
+        </div>
+        <Link
+          className=" bg-gray-300/50 p-2 rounded-full drop-shadow-lg"
+          to={`/${smoothie.id}`}
+        >
+          <FiEdit3 size={25} />
         </Link>
       </div>
     </div>
